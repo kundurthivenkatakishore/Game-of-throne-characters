@@ -1,0 +1,92 @@
+HTML
+
+code:
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game of Throne Characters</title>
+    <link rel="shortcut icon" 
+    href="logo.png">
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <script src="script.js"></script>
+  </body>
+</html>
+
+CSS
+
+code:
+
+body {
+    color: black;
+    font-size: 18px;
+  }
+/*setting the properties to the header*/
+  .heading-container {
+    text-align: center;
+    color: black;
+    background: linear-gradient(to right,#00bfff, #AFEEEE 50%,#00bfff);;
+  }
+  /*setting the properties to the main container*/
+  .main-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: left;
+    gap: 10px;
+    background-color: whitesmoke;
+  }
+  .container {
+    background-color: aqua;
+    padding: 10px;
+    border-radius: 10px;
+    width: 270px;
+    margin: 10px;
+  }
+  
+JavaScript
+
+code:
+  
+//writing to dody through javascrpt
+//setting the title of the page
+//adding the logo image in the header
+document.body.innerHTML = `<div class="heading-container">
+<h1>List of Game of Throne Characters and their Quotes</h1>
+<img src="logo.png" alt="game of thrones" width="50px" height="50px">
+</div>
+<div id="mainContainer" class="main-container"></div>`;
+//function to get the data and fetch the data from the given api
+const getData = async () => {
+    try {
+      const data = await fetch("https://game-of-thrones-quotes.herokuapp.com/v1/characters");
+      const characters = await data.json();
+      console.log(characters)
+      mainContainer.innerHTML = "";
+      characters.forEach((character) => {
+        displayData(character);     //passing the data to the function
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+  getData();
+  //function to display the data using template literal
+  const displayData = (obj) => {
+    mainContainer.innerHTML += `
+    <div class="container">
+    <h3>Character Name:${obj.name}</h3>
+    <p><b>House:</b> ${obj.house.name}</p>
+    <p><b>Quotes:</b> ${obj.quotes[0]}</p>
+    <p><b>Slug:</b> ${obj.slug}</p>
+    <p>
+    </div>
+    `;
+  };
