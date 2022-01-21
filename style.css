@@ -1,0 +1,26 @@
+body {
+    color: black;
+    font-size: 18px;
+  }
+/*setting the properties to the header*/
+  .heading-container {
+    text-align: center;
+    color: black;
+    background: linear-gradient(to right,#00bfff, #AFEEEE 50%,#00bfff);;
+  }
+  /*setting the properties to the main container*/
+  .main-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: left;
+    gap: 10px;
+    background-color: whitesmoke;
+  }
+  .container {
+    background-color: aqua;
+    padding: 10px;
+    border-radius: 10px;
+    width: 270px;
+    margin: 10px;
+  }
